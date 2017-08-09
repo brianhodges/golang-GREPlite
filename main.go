@@ -20,6 +20,7 @@ func check(err error) {
 
 func examine(path string, f os.FileInfo, err error) error {
 	file, err := os.Open(path)
+	check(err)
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -34,7 +35,7 @@ func examine(path string, f os.FileInfo, err error) error {
 func main() {
 	fmt.Println()
 	if len(os.Args) <= 2 {
-		fmt.Println("You must enter both paramaters.")
+		fmt.Println("You must enter both parameters.")
 		fmt.Println("Ex. go run main.go C:\\path\\to\\directory \"pattern match\"")
 		os.Exit(1)
 	}
